@@ -11,4 +11,6 @@ import dio.spring.diospring.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
     @Query("Select e From User e Join Fetch e.roles Where e.username = (:username)")
     public User findByUsername(@Param ("username") String username);
+    
+    boolean existsByUsername(String username);
 }

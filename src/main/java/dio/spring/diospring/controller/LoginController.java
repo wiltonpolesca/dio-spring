@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dio.spring.diospring.model.User;
-import dio.spring.diospring.service.UserService;
+import dio.spring.diospring.dtos.Login;
+import dio.spring.diospring.dtos.Session;
+import dio.spring.diospring.service.LoginService;
 
 @RestController
-@RequestMapping("users")
-public class UserController {
+@RequestMapping("login")
+public class LoginController {
 
     @Autowired
-    UserService service;
-
+    private LoginService loginService;
+    
     @PostMapping
-    // // @PreAuthorize("hasAnyRole('ADMIN', 'USERS')")
-    void post(@RequestBody User user) {
-        service.create(user);
+    Session post(@RequestBody Login login) {
+        return loginService.login(login);
     }
 }
